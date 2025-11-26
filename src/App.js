@@ -888,7 +888,7 @@ export default function App() {
                         <h4 className="text-xl font-bold" style={{ color: BRAND_COLOR }}>{exp.title}</h4>
                         <div className="text-md text-stone-600 dark:text-stone-400">{exp.company}</div>
                       </div>
-                      <div className="text-sm text-stone-700 dark:text-stone-300 font-semibold mt-2 sm:mt-0">{exp.duration}</div>
+                      <div className="text-sm text-stone-300 dark:text-stone-300 font-semibold mt-2 sm:mt-0">{exp.duration}</div>
                     </div>
                     <ul className="mt-3 list-disc pl-5 text-stone-700 dark:text-stone-300 space-y-2">
                       {exp.details.map((d, i) => <li key={i}>{d}</li>)}
