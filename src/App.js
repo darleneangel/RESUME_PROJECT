@@ -508,10 +508,10 @@ function ProjectModal({ open, onClose, project, setFullImageModal }) { // <-- AD
  1}/{project.images.length}</div>}
             </div>
 
-            <div className="mt-4 text-stone-700">
+            <div className="mt-4 text-stone-400">
               <p>{project.description}</p>
               <div className="mt-3 flex gap-2 flex-wrap">
-                {project.tags.map((t, i) => <span key={i} className="text-xs bg-stone-100 px-2 py-1 rounded">{t}</span>)}
+                {project.tags.map((t, i) => <span key={i} className="text-xs bg-stone-800 px-2 py-1 rounded">{t}</span>)}
               </div>
    
           </div>
@@ -868,7 +868,7 @@ export default function App() {
                       {p.tags.length > 3 && <span className="text-xs text-stone-500">+{p.tags.length - 3} more</span>}
                     </div>
                     <div className="mt-4 flex justify-between items-center">
-                      <button className="text-sm font-medium text-stone-700" onClick={(e) => { e.stopPropagation(); openProject(p); }}>View Project <ArrowRight className="inline w-4 h-4 ml-1" /></button>
+                      <button className="text-sm font-medium text-stone-400" onClick={(e) => { e.stopPropagation(); openProject(p); }}>View Project <ArrowRight className="inline w-4 h-4 ml-1" /></button>
                       <div>
                         <button onClick={(e) => { e.stopPropagation(); navigator.clipboard?.writeText(window.location.href + `#project-${p.id}`); setToast({ message: "Project link copied" }); }} className="text-xs px-3 py-1 border rounded" style={{ color: BRAND_COLOR }}>Share</button>
                       </div>
