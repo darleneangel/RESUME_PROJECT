@@ -45,7 +45,7 @@ const RESUME_DATA = {
   "As a highly motivated and academically accomplished BSIT student, I'm driven by a passion for leveraging technology to create meaningful and human-centered digital experiences. My strong academic record is complemented by practical leadership experience, honed through various projects and roles. My background as an ESL teacher has further cultivated my communication skills, empathy, and ability to connect with diverse groups, all of which I bring to my technical pursuits. I thrive on blending creativity with technology, constantly exploring the intersections of coding, web design, video editing, and copywriting. Whether it's crafting elegant code, designing intuitive user interfaces, producing engaging visual stories, or writing compelling narratives, I am committed to delivering impactful and accessible digital solutions.",
   contact: {
     phone: "+63 935 435 5492",
-    email: "angel.lustre@2005.com",
+    email: "angel.lustre2005@gmail.com",
     location: "Cavite City, Philippines",
     linkedin: "https://www.linkedin.com/in/darlene-custodio-13011b320/"
   },
@@ -64,9 +64,13 @@ const RESUME_DATA = {
       details: [
         "Delivered tailored lessons to diverse learners and helped improve communication skills.",
         "Applied time management and cultural sensitivity in an online classroom setting."
-      ]
-    }
-  ],
+      ],
+      
+images: [
+      "native.jpg"
+    ]
+  }
+],
   education: [
     {
       degree: "Bachelor of Science in Information Technology",
@@ -508,10 +512,10 @@ function ProjectModal({ open, onClose, project, setFullImageModal }) { // <-- AD
  1}/{project.images.length}</div>}
             </div>
 
-            <div className="mt-4 text-stone-400">
+            <div className="mt-4 text-stone-700 dark:text-stone-400">
               <p>{project.description}</p>
               <div className="mt-3 flex gap-2 flex-wrap">
-                {project.tags.map((t, i) => <span key={i} className="text-xs bg-stone-800 px-2 py-1 rounded">{t}</span>)}
+                {project.tags.map((t, i) => <span key={i} className="text-xs bg-stone-300 dark:bg-stone-800 px-2 py-1 rounded">{t}</span>)}
               </div>
    
           </div>
@@ -595,7 +599,6 @@ function ScrollProgress() {
   );
 }
 
-/* Floating Contact (D)*/
 function FloatingContact({ onOpenContact }) {
   return (
     <div className="fixed right-4 bottom-6 z-50">
@@ -662,6 +665,9 @@ function AboutSection() {
 
 /*Main App*/
 export default function App() {
+  
+
+  
   const [dark, setDark] = useState(false);
   useEffect(() => {
     try {
@@ -694,6 +700,10 @@ export default function App() {
     { id: "contact", label: "Contact", ref: contactRef, icon: Mail },
   ];
 
+  const [experienceModal, setExperienceModal] = useState({
+  open: false,
+  images: []
+});
   const [projectModal, setProjectModal] = useState({ open: false, project: null });
   const [fullImageModal, setFullImageModal] = useState({ open: false, imageUrl: null }); // <-- FIX 1: DEFINE NEW STATE
   const [certModal, setCertModal] = useState({ open: false, certificate: null });
@@ -768,6 +778,7 @@ export default function App() {
   }
 
   return (
+    
     <div className={`${dark ? "dark" : ""}`}>
       <ScrollProgress />
       <div className={`min-h-screen p-4 md:p-6`} style={{ backgroundColor: dark ? BG_COLOR_DARK : BG_COLOR_LIGHT, fontFamily: "Inter, sans-serif" }}>
@@ -786,8 +797,36 @@ export default function App() {
                 <DownloadCloud className="w-4 h-4" /> CV
               </a>
 
-              <button onClick={handleToggleTheme} className="p-2 rounded-full border border-stone-300 dark:border-stone-700 bg-white/70 dark:bg-stone-800/70" title="Toggle theme" aria-label="Toggle theme" style={{ color: BRAND_COLOR }}>
-                {dark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              <button
+                onClick={handleToggleTheme}
+                className="p-2 rounded-full border border-stone-300 dark:border-stone-700 bg-white/70 dark:bg-stone-800/70"
+                title="Toggle theme"
+                aria-label="Toggle theme"
+                style={{ color: BRAND_COLOR }}
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  {dark ? (
+                    <motion.div
+                      key="sun"
+                      initial={{ rotate: -180, scale: 0, opacity: 0 }}
+                      animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                      exit={{ rotate: 180, scale: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                    >
+                      <Sun className="w-5 h-5" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="moon"
+                      initial={{ rotate: 180, scale: 0, opacity: 0 }}
+                      animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                      exit={{ rotate: -180, scale: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                    >
+                      <Moon className="w-5 h-5" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </button>
             </div>
           </header>
@@ -826,7 +865,7 @@ export default function App() {
                   <h2 style={{ color: BRAND_COLOR }} className="text-xl font-bold">{RESUME_DATA.name}</h2>
                   <p className="text-sm text-stone-600 dark:text-stone-300 mb-4">{RESUME_DATA.tagline}</p>
                   <div className="text-sm space-y-3 pt-3 border-t border-stone-200 dark:border-stone-700">
-                    <div className="flex items-center gap-3"><Mail className="w-5 h-5 text-orange-600" /><a href={`mailto:${RESUME_DATA.contact.email}`} className="text-stone-700 dark:text-stone-200 hover:underline">{RESUME_DATA.contact.email}</a></div>
+                    <div className="flex items-center gap-3"><Mail className="w-5 h-5 text-orange-600" /><a href={`mailto:angel.lustre2005@gmail.com`} className="text-stone-700 dark:text-stone-200 hover:underline">{RESUME_DATA.contact.email}</a></div>
                     <div className="flex items-center gap-3"><User className="w-5 h-5 text-orange-600" /><span className="text-stone-700 dark:text-stone-200">{RESUME_DATA.contact.phone}</span></div>
                     <div className="flex items-center gap-3"><Linkedin className="w-5 h-5 text-orange-600" /><a href={RESUME_DATA.contact.linkedin} target="_blank" rel="noreferrer" className="text-stone-700 dark:text-stone-200 hover:underline">LinkedIn Profile</a></div>
                     <div className="flex items-center gap-3"><Calendar className="w-5 h-5 text-orange-600" /><span className="text-stone-700 dark:text-stone-200">{RESUME_DATA.contact.location}</span></div>
@@ -878,25 +917,44 @@ export default function App() {
               </div>
             </motion.section>
 
-            <motion.section id="experience" ref={experienceRef} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
-              <SectionTitle icon={Briefcase}>Professional Experience</SectionTitle>
-              <div className="grid gap-6">
-                {RESUME_DATA.experience.map((exp, idx) => (
-                  <motion.div key={idx} whileHover={{ scale: 1.01 }} className="p-6 bg-white dark:bg-stone-800 rounded-xl border border-stone-200 dark:border-stone-700 shadow-lg">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3">
-                      <div>
-                        <h4 className="text-xl font-bold" style={{ color: BRAND_COLOR }}>{exp.title}</h4>
-                        <div className="text-md text-stone-600 dark:text-stone-400">{exp.company}</div>
-                      </div>
-                      <div className="text-sm text-stone-700 dark:text-stone-300 font-semibold mt-2 sm:mt-0">{exp.duration}</div>
-                    </div>
-                    <ul className="mt-3 list-disc pl-5 text-stone-700 dark:text-stone-300 space-y-2">
-                      {exp.details.map((d, i) => <li key={i}>{d}</li>)}
-                    </ul>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.section>
+            <motion.section
+  id="experience"
+  ref={experienceRef}
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.45 }}
+>
+  <SectionTitle icon={Briefcase}>Professional Experience</SectionTitle>
+
+  <div className="grid gap-6">
+    {RESUME_DATA.experience.map((exp, idx) => (
+      <motion.div
+        key={idx}
+        whileHover={{ scale: 1.01 }}
+        onClick={() => setExperienceModal({ open: true, images: exp.images || [] })}
+        className="p-6 bg-white dark:bg-stone-800 rounded-xl border border-stone-200 dark:border-stone-700 shadow-lg cursor-pointer"
+      >
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3">
+          <div>
+            <h4 className="text-xl font-bold" style={{ color: BRAND_COLOR }}>
+              {exp.title}
+            </h4>
+            <div className="text-md text-stone-600 dark:text-stone-400">{exp.company}</div>
+          </div>
+
+          <div className="text-sm text-stone-700 dark:text-stone-300 font-semibold mt-2 sm:mt-0">
+            {exp.duration}
+          </div>
+        </div>
+
+        <ul className="mt-3 list-disc pl-5 text-stone-700 dark:text-stone-300 space-y-2">
+          {exp.details.map((d, i) => <li key={i}>{d}</li>)}
+        </ul>
+      </motion.div>
+    ))}
+  </div>
+</motion.section>
+
 
             <motion.section id="education" ref={educationRef} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
               <SectionTitle icon={GraduationCap}>Education</SectionTitle>
@@ -976,6 +1034,49 @@ export default function App() {
             <p>&copy; {new Date().getFullYear()} {RESUME_DATA.name}. Built with React and Tailwind CSS.</p>
           </footer>
         </div>
+
+        <AnimatePresence>
+  {experienceModal.open && (
+    <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={() => setExperienceModal({ open: false, images: [] })}
+    >
+      <motion.div
+        className="bg-white dark:bg-stone-900 rounded-xl p-6 max-w-3xl w-full"
+        initial={{ scale: 0.9 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0.9 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h3 className="text-lg font-bold mb-4 text-center">Experience Gallery</h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {experienceModal.images.map((img, i) => (
+            <img
+              key={i}
+              src={img}
+              alt={`Experience ${i}`}
+              className="rounded-lg object-cover w-full h-48 cursor-pointer hover:scale-105 transition-transform"
+            />
+          ))}
+        </div>
+
+        <div className="text-right mt-4">
+          <button
+            className="px-4 py-2 rounded bg-stone-700 text-white"
+            onClick={() => setExperienceModal({ open: false, images: [] })}
+          >
+            Close
+          </button>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
 
        <ProjectModal open={projectModal.open} onClose={closeProject} project={projectModal.project} setFullImageModal={setFullImageModal} /> 
 <FullImageModal open={fullImageModal.open} onClose={() => setFullImageModal({ open: false, imageUrl: null })} imageUrl={fullImageModal.imageUrl} /> 
