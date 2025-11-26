@@ -67,7 +67,7 @@ const RESUME_DATA = {
       ],
       
 images: [
-      "./images/native.jpg"
+      "./images/work.jpg"
     ]
   }
 ],
