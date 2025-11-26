@@ -110,22 +110,22 @@ images: [
 
 
   certifications: [
-    { title: "CCNA: Switching, Routing, and Wireless Essentials", issued: "Jul 2025", certImageUrl: "./images/CCNA.png" }, // Added image path
-    { title: "CCNA: Introduction to Networks", issued: "Apr 2025", certImageUrl: "./images/CCNAIntroductiontoNetworks.png" }, // Added image path
-    { title: "Python Essentials 1", issued: "Apr 2025", certImageUrl: "./images/python1.png" }, // Added image path
-    { title: "Python Essentials 2", issued: "Apr 2025", certImageUrl: "./images/python2.png" }, // Added image path
-    { title: "Linux Unhatched", issued: "Nov 2023", certImageUrl: "./images/linux.png" }, // Added image path
-    { title: "Operating Systems Basics", issued: "Nov 2023", certImageUrl: "./images/cs401.png" }, // Added image path
-    { title: "Saylor Academy: Preparing and Delivering Presentations", issued: "Apr 2025", certImageUrl: "./images/prdv008.png" }, // Added image path
-    { title: "Saylor Academy: Professional Etiquette", issued: "Sep 2025", certImageUrl: "./images/prdv104.png" }, // Added image path
-    { title: "PRDV223: Organizational Culture, Diversity, and Ethics", issued: "Sep 2025", certImageUrl: "./images/prdv223.png" }, // Added image path
-    { title: "BUS200: Business Ethics", issued: "Sep 2025", certImageUrl: "./images/bus200.png" }, // Added image path
-    { title: "PHIL102: Intro to Critical Thinking and Logic", issued: "Oct 2025", certImageUrl: "./images/phil102.png" }, // Added image path
-    { title: "CS101: Intro to Critical Thinking and Logic", issued: "Oct 2025", certImageUrl: "./images/cs101.png" },
-    { title: "CS102: Intro to Critical Thinking and Logic", issued: "Oct 2025", certImageUrl: "./images/cs102.png" },
-    { title: "CS107: Intro to Critical Thinking and Logic", issued: "Oct 2025", certImageUrl: "./images/cs107.png" },
-    { title: "CS201: Intro to Critical Thinking and Logic", issued: "Oct 2025", certImageUrl: "./images/cs201.png" },
-    { title: "PRDV104: Intro to Critical Thinking and Logic", issued: "Oct 2025", certImageUrl: "./images/prdv104.png" },
+    { title: "CCNA: Switching, Routing, and Wireless Essentials", issued: "Jul 2025", certImageUrl: "/images/CCNA.png" }, // Added image path
+    { title: "CCNA: Introduction to Networks", issued: "Apr 2025", certImageUrl: "/images/CCNAIntroductiontoNetworks.png" }, // Added image path
+    { title: "Python Essentials 1", issued: "Apr 2025", certImageUrl: "/images/python1.png" }, // Added image path
+    { title: "Python Essentials 2", issued: "Apr 2025", certImageUrl: "/images/python2.png" }, // Added image path
+    { title: "Linux Unhatched", issued: "Nov 2023", certImageUrl: "/images/linux.png" }, // Added image path
+    { title: "Operating Systems Basics", issued: "Nov 2023", certImageUrl: "/images/cs401.png" }, // Added image path
+    { title: "Saylor Academy: Preparing and Delivering Presentations", issued: "Apr 2025", certImageUrl: "/images/prdv008.png" }, // Added image path
+    { title: "Saylor Academy: Professional Etiquette", issued: "Sep 2025", certImageUrl: "/images/prdv104.png" }, // Added image path
+    { title: "PRDV223: Organizational Culture, Diversity, and Ethics", issued: "Sep 2025", certImageUrl: "/images/prdv223.png" }, // Added image path
+    { title: "BUS200: Business Ethics", issued: "Sep 2025", certImageUrl: "/images/bus200.png" }, // Added image path
+    { title: "PHIL102: Intro to Critical Thinking and Logic", issued: "Oct 2025", certImageUrl: "/images/phil102.png" }, // Added image path
+    { title: "CS101: Intro to Critical Thinking and Logic", issued: "Oct 2025", certImageUrl: "/images/cs101.png" },
+    { title: "CS102: Intro to Critical Thinking and Logic", issued: "Oct 2025", certImageUrl: "/images/cs102.png" },
+    { title: "CS107: Intro to Critical Thinking and Logic", issued: "Oct 2025", certImageUrl: "/images/cs107.png" },
+    { title: "CS201: Intro to Critical Thinking and Logic", issued: "Oct 2025", certImageUrl: "/images/cs201.png" },
+    { title: "PRDV104: Intro to Critical Thinking and Logic", issued: "Oct 2025", certImageUrl: "/images/prdv104.png" },
     
   ],
 
