@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darlene Angel L. Custodio | Interactive IT Resume</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* --- Color Variables --- */
+        
+        /* DARK MODE (Default) */
+        :root {
+            --primary-pink: #f472b6; /* Light pink for accent */
+            --bg-color: #0b101b; /* Very dark background */
+            --container-bg: #1f2937; /* Dark gray for the main card */
+            --gray-text: #d1d5db; /* Light gray for body text */
+            --dark-text: #f9fafb; /* White/Off-white for headings */
+            --border-color: #4b5563; /* Medium gray for dividers */
+            --soft-skill-bg: #374151; /* Darker gray for soft skills */
+            --switch-icon: var(--dark-text);
+        }
+
+        /* LIGHT MODE Overrides (If needed for future expansion, currently uses default) */
+        body[data-theme="light"] {
+            --primary-pink: #be3074; /* Bright Violet/Pink */
+            --bg-color: #f3f4f6; /* Very light gray background */
+            --container-bg: #ffffff; /* White for the main card */
+            --gray-text: #374151; /* Dark gray for body text */
+            --dark-text: #1f2937; /* Very dark gray for headings */
+            --border-color: #e5e7eb; /* Light gray for dividers */
+            --soft-skill-bg: #f3f4f6; /* Very light gray for soft skills */
+            --switch-icon: #1f2937;
+        }
+
+        /* --- New Keyframe Animations --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulsePink {
+            0% { border-color: var(--primary-pink); }
+            50% { border-color: var(--border-color); }
+            100% { border-color: var(--primary-pink); }
+        }
+
+        /* --- Theme Switch Button --- */
+        .theme-switch-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+        .theme-switch-button {
+            background: var(--container-bg);
+            border: 2px solid var(--border-color);
+            color: var(--switch-icon);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease-in-out;
+        }
+        .theme-switch-button:hover {
+            border-color: var(--primary-pink);
+            color: var(--primary-pink);
+            /* New: Subtle scale on hover */
+            transform: scale(1.1); 
+        }
+
+        /* --- Base Styles --- */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            padding: 1rem;
+            color: var(--gray-text); 
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Resume Container */
+        .container {
+            max-width: 80rem;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: var(--container-bg);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6p x rgba(0, 0, 0, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            position: relative;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            /* New: Initial hidden state for fade-in */
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards; /* Apply animation */
+        }
+        /* Light mode shadow adjustment */
+        body[data-theme="light"] .container {
+             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Responsive Padding */
+        @media (min-width: 640px) { 
+            body { padding: 2rem; }
+            .container { padding: 2.5rem; }
+        }
+        @media (min-width: 1024px) { 
+            .container { padding: 3rem; }
+        }
+
+        /* HEADER */
+        .header {
+            padding-bottom: 1.5rem;
+            border-bottom: 4px solid var(--primary-pink); 
+            margin-bottom: 2rem;
+            position: relative;
+            /* New: Pulsing pink border on the main divider */
+            animation: pulsePink 5s infinite ease-in-out;
+        }
+        .header h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--dark-text);
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.025em;
+        }
+        .header p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: var(--primary-pink);
+            margin-bottom: 1rem;
+        }
+        
+        /* Profile Picture */
+        .profile-pic {
+            width: 200px; 
+            height: 200px; 
+            border-radius: 50%;
+            object-fit: cover;
+            float: left; 
+            margin-right: 2rem; 
+            margin-bottom: 1rem;
+            border: 4px solid var(--primary-pink); 
+            transition: border-color 0.3s;
+            /* New: Subtle rotate/glow on hover */
+            transition: all 0.4s ease-in-out;
+        }
+        .profile-pic:hover {
+            transform: rotate(2deg) scale(1.02);
+            box-shadow: 0 0 15px var(--primary-pink);
+        }
+
+
+        /* Clear float after header content */
+        .header::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        /* Contact Section */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--gray-text);
+            clear: both; 
+        }
+        .contact-info a, .contact-info span {
+            display: flex;
+            align-items: center;
+            transition: color 0.15s ease-in-out, transform 0.15s; /* Added transform */
+            color: var(--gray-text);
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            color: var(--primary-pink);
+            transform: translateX(5px); /* New: Slides right on hover */
+        }
+        .contact-info svg {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.25rem;
+        }
+        
+        @media (min-width: 640px) {
+            .header h1 { font-size: 3rem; }
+            .header p { font-size: 1.5rem; }
+            .contact-info { font-size: 1rem; }
+            .header-text-container { overflow: hidden; }
+        }
+
+        /* SECTION STYLES */
+        /* Applies to the fixed sections (Summary, Skills, Hobbies) */
+        section:not(.tab-content) { 
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        /* Staggered animation for FIXED sections */
+        section:nth-child(2) { animation-delay: 0.4s; }
+        section:nth-child(3) { animation-delay: 0.6s; }
+        section:nth-child(4) { animation-delay: 0.8s; }
+        section:nth-child(5) { animation-delay: 1.0s; } 
+
+
+        section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        /* SKILLS BADGES */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+        .skill-badge {
+            background-color: var(--primary-pink);
+            color: var(--container-bg); 
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            transition: all 0.2s; /* Added transition */
+        }
+        .skill-badge:hover {
+            transform: translateY(-3px); /* New: Lifts up on hover */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            background-color: #d946ef; /* Slightly darker pink on hover */
+        }
+        .soft-skill-badge {
+            background-color: var(--soft-skill-bg);
+            color: var(--gray-text); 
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            border: 1px solid var(--border-color);
+            font-weight: 400;
+            transition: all 0.2s; /* Added transition */
+        }
+        .soft-skill-badge:hover {
+             transform: translateY(-3px); /* New: Lifts up on hover */
+            border-color: var(--primary-pink);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        /* Style for Hobby Badges (using the same style as soft skills) */
+        .hobby-badge {
+            background-color: var(--soft-skill-bg);
+            color: var(--primary-pink); /* Highlight hobby text slightly */
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            border: 1px solid var(--primary-pink); /* Highlight border */
+            font-weight: 500;
+            transition: all 0.2s; /* Added transition */
+        }
+        .hobby-badge:hover {
+            background-color: var(--primary-pink);
+            color: var(--container-bg);
+            transform: scale(1.05); /* Slightly bigger on hover */
+            box-shadow: 0 0 10px rgba(244, 114, 182, 0.5); /* Pink glow */
+        }
+
+
+        /* --- NEW: CONSOLIDATED ENTRY STYLES AND ANIMATION --- */
+        .resume-entry {
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-pink);
+            padding-left: 1rem;
+            /* Animation Properties */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-left-color 0.3s;
+            position: relative; 
+            z-index: 1; 
+        }
+
+        .resume-entry:hover {
+            transform: scale(1.01); /* Zooms the element slightly by 1% */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle lift shadow */
+            border-left-color: #ffffff; /* Pink-to-white shift on hover */
+        }
+        
+        /* Light Mode Hover Shadow Adjustment */
+        body[data-theme="light"] .resume-entry:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+            border-left-color: #000000;
+        }
+
+        /* Standard Entry Header (Title and Date) */
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: column; /* Default stack on mobile */
+        }
+
+        .entry-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            transition: color 0.3s;
+            margin-bottom: 0.25rem;
+        }
+
+        .entry-header span {
+            font-size: 0.875rem;
+            color: var(--primary-pink); 
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        /* Subheader (Location/Institution and Subtitle) */
+        .entry-subheader {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: column;
+            margin-bottom: 0.5rem;
+        }
+        .entry-subheader p {
+            font-size: 1.125rem;
+            color: var(--gray-text);
+            font-style: italic;
+            margin-top: 0.25rem; 
+        }
+        .entry-subheader span {
+            font-size: 1rem;
+            color: var(--gray-text);
+        }
+
+        /* Desktop Layout for Headers/Subheaders */
+        @media (min-width: 640px) {
+            .entry-header, .entry-subheader {
+                flex-direction: row;
+                align-items: center;
+            }
+            .entry-header h3 {
+                 margin-bottom: 0;
+            }
+            .entry-subheader p {
+                margin-top: 0;
+            }
+        }
+        
+        /* LIST ITEMS (Job Duties/Achievements) */
+        .resume-entry ul {
+            list-style-type: disc;
+            padding-left: 1.25rem;
+            margin-top: 0.5rem;
+            color: var(--gray-text);
+        }
+        .resume-entry ul li {
+            margin-bottom: 0.25rem;
+            line-height: 1.5;
+        }
+
+        /* Custom highlight text */
+        .highlight-text {
+            color: var(--primary-pink);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        /* --- Interactive Tabs --- */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            background-color: transparent;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--gray-text);
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border: 1px solid transparent;
+            border-bottom: none;
+            transition: background-color 0.3s, color 0.3s, transform 0.1s;
+            margin-right: 5px;
+        }
+
+        .tab-button:hover {
+            background-color: var(--soft-skill-bg);
+            transform: translateY(-2px); /* New: Slight lift on hover */
+        }
+
+        .tab-button.active {
+            background-color: var(--primary-pink);
+            color: var(--container-bg);
+            border: 1px solid var(--primary-pink);
+            border-bottom: 2px solid var(--primary-pink);
+            transform: translateY(0); /* Reset lift if active */
+        }
+
+        .tab-content {
+            display: none;
+            padding-top: 10px;
+            /* Ensure the content is visible when active */
+        }
+        
+        /* Only apply fade-in when active */
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Print Style Overrides */
+        @media print {
+            body { background-color: white !important; color: #333 !important; padding: 0; }
+            .container { box-shadow: none !important; background-color: white !important; color: #333 !important; animation: none !important; opacity: 1 !important; }
+            .theme-switch-container { display: none; }
+            .header { border-bottom: 4px solid #000 !important; animation: none !important; }
+            .header h1, .header h2, section h2, .entry-header h3 { color: black !important; }
+            .profile-pic { border: 2px solid #000 !important; transform: none !important; box-shadow: none !important; }
+            .contact-info a, .contact-info span, .resume-entry ul, .entry-subheader p, section p { color: #555 !important; transform: none !important; }
+            .skill-badge, .soft-skill-badge, .hobby-badge { 
+                background-color: #eee !important; color: #111 !important; border: 1px solid #ccc !important; 
+                transform: none !important; box-shadow: none !important;
+            } 
+            .resume-entry { border-left: 4px solid #ccc !important; transform: none !important; box-shadow: none !important;}
+            .tabs { display: none; }
+            .tab-content { display: block !important; padding-top: 0; animation: none !important; opacity: 1 !important;}
+            section:not(.tab-content) { animation: none !important; opacity: 1 !important; }
+        }
+
+    </style>
+</head>
+<body data-theme="dark">
+
+    <div class="container">
+        <div class="theme-switch-container">
+            <button id="theme-toggle" class="theme-switch-button" aria-label="Toggle light and dark theme">
+                <i class="fas fa-sun" id="theme-icon"></i>
+            </button>
+        </div>
+
+      <header class="header">
+            <img src="c:\Users\Darlene Angel\OneDrive - ms\APPLICATION FORMS\PICTUREKO.jpg" alt="Darlene Angel L. Custodio Profile Picture" class="profile-pic">
+
+            <div class="header-text-container">
+                <h1 class="">
+                    DARLENE ANGEL L. CUSTODIO
+                </h1>
+                <p class="">
+                    BSIT Student | Consistent Dean’s Lister | Tech & Creative Versatilist
+                </p>
+            </div>
+            
+           <div class="contact-info">
+                <a href="mailto:angel.lustre@2005.com">
+                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 6h.01"></path></svg>
+                    angel.lustre@2005.com
+                </a>
+                <a href="tel:+639354355492">
+                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-3.28a1 1 0 01-.948-.684l-1.498-4.493a1 1 0 01.502-1.21l2.257-1.13a11.042 11.042 0 00-5.516-5.516l-1.13 2.257a1 1 0 01-1.21.502L5 6.28A1 1 0 014.316 5H3z"></path></svg>
+                    +63 935 435 5492
+                </a>
+                <span>
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Cavite City, Philippines
+                </span>
+                <a href="https://linkedin.com/in/darlenecustodio" target="_blank">
+                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM4 11h4v10H4zm2-6a2 2 0 110 4 2 2 0 010-4z"/></svg>
+                    Darlene Custodio (Link)
+                </a>
+            </div>
+        </header>
+
+        <section>
+            <h2>Summary & Career Objective</h2>
+            <p>
+                20-year-old **BSIT student** with a strong academic record as a <span class="highlight-text">consistent Dean’s Lister</span> and proven leadership in student organizations. Former ESL teacher now channeling excellent communication skills into <span class="highlight-text">coding, web design, video editing, and copywriting</span>. Passionate about blending technology with storytelling to craft engaging digital experiences. Seeking opportunities to contribute to innovative tech projects while growing as a versatile and collaborative IT professional.
+            </p>
+        </section>
+
+        <section>
+            <h2>Technical Proficiencies</h2>
+            <div class="skills-list">
+                <span class="skill-badge">Java</span>
+                <span class="skill-badge">Python</span>
+                <span class="skill-badge">C#</span>
+                <span class="skill-badge">HTML/CSS/JavaScript</span>
+                <span class="skill-badge">Front-end Development</span>
+                <span class="skill-badge">SQL (SSMS, MySQL)</span>
+                <span class="skill-badge">NetBeans, VS Code, Android Studio</span>
+                <span class="skill-badge">UI/UX Design (Figma, Canva)</span>
+                <span class="skill-badge">Adobe Photoshop, CapCut</span>
+                <span class="skill-badge">Git/GitHub</span>
+                <span class="skill-badge">CCNA & Networking Basics</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Soft Skills & Leadership</h2>
+            <div class="skills-list">
+                <span class="soft-skill-badge">Communication</span>
+                <span class="soft-skill-badge">Leadership (SSG Secretary)</span>
+                <span class="soft-skill-badge">Team Collaboration</span>
+                <span class="soft-skill-badge">Problem-Solving</span>
+                <span class="soft-skill-badge">Creativity & Copywriting</span>
+                <span class="soft-skill-badge">Adaptability</span>
+                <span class="soft-skill-badge">English Proficiency</span>
+                <span class="soft-skill-badge">Critical Thinking</span>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Hobbies & Interests</h2>
+            <div class="skills-list">
+                <span class="hobby-badge">Singing & Music Production</span>
+                <span class="hobby-badge">Dancing (Modern/Hip-hop)</span>
+                <span class="hobby-badge">Continuous Self-Study (Tech & Language)</span>
+                <span class="hobby-badge">Reading Novels (Fantasy/Sci-Fi)</span>
+            </div>
+        </section>
+
+        <div class="main-interactive-content">
+            <div class="tabs">
+                <button class="tab-button" data-tab-target="education-tab">Education</button>
+                <button class="tab-button" data-tab-target="certifications-tab">Certifications</button>
+                <button class="tab-button" data-tab-target="experience-tab">Experience</button>
+            </div>
+            
+            <section id="education-tab" class="tab-content">
+                <h2>🎓 Academic Achievements & Leadership</h2>
+
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <h3>Bachelor of Science in Information Technology</h3>
+                        <span>2023 – Present | Expected: May 2027</span>
+                    </div>
+                    <div class="entry-subheader">
+                        <p>San Sebastian College-Recoletos de Cavite</p>
+                        <span>Consistent Dean’s Lister (Six Semesters)</span>
+                    </div>
+                    <ul>
+                        <li>**Leadership:** Currently serving as **SSG Secretary**. Previously VP for External Affairs, Junior Philippine Computer Society (JPCS).</li>
+                        <li>**Awards:** Awarded **Best in Programming (Python)** during IT Week 2024.</li>
+                        <li>Champion in the REAP 2024 Bible Quiz Bee.</li>
+                    </ul>
+                </div>
+
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <h3>Senior High School - Science, Technology, Engineering, and Mathematics (STEM)</h3>
+                        <span>2021 – 2023</span>
+                    </div>
+                    <div class="entry-subheader">
+                        <p>Cavite National High School</p>
+                        <span>Highest Honors (G11) & High Honors (G12)</span>
+                    </div>
+                    <ul>
+                        <li>Presented research at the **22nd International Students' Research Conference** (University of Latvia).</li>
+                        <li>Active participant in the Robotics Club and Science Club.</li>
+                    </ul>
+                </div>
+
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <h3>Junior High School - Special Science Class (STE) Program</h3>
+                        <span>2017 – 2021</span>
+                    </div>
+                    <div class="entry-subheader">
+                        <p>Cavite National High School</p>
+                        <span>Consistent Honor Student</span>
+                    </div>
+                    <ul>
+                        <li>Served as SSG Grade 7 Representative and YES-O Grade 8 Representative.</li>
+                        <li>*Elementary:* Graduated as **Salutatorian** (Ovidio Dela Rosa Elementary School).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="certifications-tab" class="tab-content">
+                <h2>🏆 Professional Certifications & Training</h2>
+                
+                <h3>Cisco Networking & Programming</h3>
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <h3>CCNA: Switching, Routing, and Wireless Essentials</h3>
+                        <span>Issued July 2025</span>
+                    </div>
+                    <div class="entry-subheader">
+                        <p>Cisco Networking Academy</p>
+                        <span>Networking Certification</span>
+                    </div>
+                </div>
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <h3>CCNA: Introduction to Networks</h3>
+                        <span>Issued April 2025</span>
+                    </div>
+                     <div class="entry-subheader">
+                        <p>Cisco Networking Academy</p>
+                        <span>Networking Certification</span>
+                    </div>
+                </div>
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <h3>Python Essentials 1 & 2</h3>
+                        <span>Issued April 2025</span>
+                    </div>
+                    <div class="entry-subheader">
+                        <p>Cisco Networking Academy</p>
+                        <span>Programming Certification</span>
+                    </div>
+                </div>
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <h3>Linux Unhatched & Operating Systems Basics</h3>
+                        <span>Issued November 2023</span>
+                    </div>
+                    <div class="entry-subheader">
+                        <p>Cisco Networking Academy</p>
+                        <span>OS Fundamentals</span>
+                    </div>
+                </div>
+
+                <h3>Saylor Academy - Computer Science & Programming</h3>
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <h3>Introduction to Java and Object-Oriented Programming (PRDV410)</h3>
+                        <span>Issued October 2024</span>
+                    </div>
+                    <div class="entry-subheader">
+                        <p>Saylor Academy</p>
+                        <span>OOP Fundamentals</span>
+                    </div>
+                </div>
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <h3>Elementary Data Structures (CS201) & C++ Programming (CS107)</h3>
+                        <span>Issued September 2024</span>
+                    </div>
+                    <div class="entry-subheader">
+                        <p>Saylor Academy</p>
+                        <span>Programming Fundamentals</span>
+                    </div>
+                </div>
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <h3>Introduction to Computer Science I & II (CS101, CS102)</h3>
+                        <span>Issued April 2024</span>
+                    </div>
+                    <div class="entry-subheader">
+                        <p>Saylor Academy</p>
+                        <span>CS Core Concepts</span>
+                    </div>
+                </div>
+
+                <h3>Saylor Academy - Professional Development</h3>
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <h3>Professional Etiquette (PRDV104) and Organizational Culture & Ethics (PRDV223, BUS200)</h3>
+                        <span>Issued September/October 2025</span>
+                    </div>
+                    <div class="entry-subheader">
+                        <p>Saylor Academy</p>
+                        <span>Professional Skills</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience-tab" class="tab-content">
+                <h2>💼 Work Experience</h2>
+
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <h3>English as a Second Language (ESL) Teacher</h3>
+                        <span>July 2024 – September 2024</span>
+                    </div>
+                    <div class="entry-subheader">
+                        <p>Native Camp – Remote | Part-Time</p>
+                        <span>Teaching & Communication</span>
+                    </div>
+                    <ul>
+                        <li>Taught students of various levels and nationalities in a virtual classroom setting, demonstrating **cultural sensitivity**.</li>
+                        <li>Helped learners improve their English communication skills through engaging and personalized lessons.</li>
+                        <li>Applied strong verbal **communication** skills to foster a supportive and effective learning environment.</li>
+                        <li>Demonstrated **adaptability** and **time management** in handling diverse student needs and schedules remotely.</li>
+                    </ul>
+                </div>
+                
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <h3>IT Group Project: Simple Database Application</h3>
+                        <span>Academic Project (Fall 2024)</span>
+                    </div>
+                    <div class="entry-subheader">
+                        <p>San Sebastian College-Recoletos de Cavite</p>
+                        <span>Database Management & C#</span>
+                    </div>
+                    <ul>
+                        <li>Designed and implemented a basic inventory system using **C#** and **SQL Server Management Studio (SSMS)**.</li>
+                        <li>Collaborated with a team of three to define system requirements and develop a user-friendly interface.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+        </div>
+
+    <script>
+        // --- Theme Toggle Logic ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            const toggleButton = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            
+            // --- Tabbed Navigation Logic ---
+            const tabs = document.querySelectorAll('.tab-button');
+            const contents = document.querySelectorAll('.tab-content');
+
+            function activateTab(targetId, targetButton) {
+                // Deactivate all
+                tabs.forEach(item => item.classList.remove('active'));
+                contents.forEach(item => item.classList.remove('active'));
+
+                // Activate the selected tab and content
+                targetButton.classList.add('active');
+                const targetContent = document.getElementById(targetId);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            }
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetId = tab.getAttribute('data-tab-target');
+                    activateTab(targetId, tab);
+                });
+            });
+
+            // 1. Load saved theme or prefer system setting
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme) {
+                body.setAttribute('data-theme', savedTheme);
+            } else if (prefersDark) {
+                body.setAttribute('data-theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+            }
+
+            // Set initial icon based on current theme
+            function setIcon(theme) {
+                if (theme === 'dark') {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                } else {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                }
+            }
+
+            setIcon(body.getAttribute('data-theme'));
+
+            // 2. Handle theme toggle click
+            toggleButton.addEventListener('click', () => {
+                let currentTheme = body.getAttribute('data-theme');
+                let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                body.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                setIcon(newTheme);
+            });
+            
+            // 3. Force first tab active on load for initial visibility
+            // Default to the Education tab
+            const defaultTabButton = document.querySelector('.tab-button[data-tab-target="education-tab"]');
+            if (defaultTabButton) {
+                activateTab(defaultTabButton.getAttribute('data-tab-target'), defaultTabButton);
+            }
+        });
+    </script>
+</body>
+</html>
