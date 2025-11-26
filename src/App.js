@@ -645,14 +645,14 @@ function AboutSection() {
         <h4 className="text-md font-semibold mb-2" style={{ color: BRAND_COLOR }}>Timeline</h4>
         <div className="space-y-4">
           <div>
-            <div className="text-sm text-stone-600">2023 — Present</div>
-            <div className="font-medium ">BSIT Student • San Sebastian College</div>
-            <div className="text-sm text-stone-700">Dean's Lister & Student leader</div>
+            <div className="text-sm text-stone-600 dark:text-stone-100">2023 — Present</div>
+            <div className="font-medium dark:text-stone-100 ">BSIT Student • San Sebastian College</div>
+            <div className="text-sm text-stone-700 dark:text-stone-100">Dean's Lister & Student leader</div>
           </div>
           <div>
-            <div className="text-sm text-stone-600">Jul 2024 – Sep 2024</div>
-            <div className="font-medium">ESL Teacher • Native Camp</div>
-            <div className="text-sm text-stone-700">Remote, part-time teaching experience</div>
+            <div className="text-sm text-stone-600 dark:text-stone-100">Jul 2024 – Sep 2024</div>
+            <div className="font-medium dark:text-stone-100">ESL Teacher • Native Camp</div>
+            <div className="text-sm text-stone-700 dark:text-stone-100">Remote, part-time teaching experience</div>
           </div>
         </div>
       </div>
@@ -888,7 +888,7 @@ export default function App() {
                         <h4 className="text-xl font-bold" style={{ color: BRAND_COLOR }}>{exp.title}</h4>
                         <div className="text-md text-stone-600 dark:text-stone-400">{exp.company}</div>
                       </div>
-                      <div className="text-sm text-stone-300 dark:text-stone-100 font-semibold mt-2 sm:mt-0">{exp.duration}</div>
+                      <div className="text-sm text-stone-700 dark:text-stone-300 font-semibold mt-2 sm:mt-0">{exp.duration}</div>
                     </div>
                     <ul className="mt-3 list-disc pl-5 text-stone-700 dark:text-stone-300 space-y-2">
                       {exp.details.map((d, i) => <li key={i}>{d}</li>)}
